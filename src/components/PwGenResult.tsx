@@ -2,11 +2,11 @@ import { useContext, useEffect } from "react";
 import { PwGenContext } from "../contexts/PwGenContext";
 
 const PwGenResult: React.FC = () => {
-  const { charsets, length, password, getNewPassword } =
+  const { charsets, length, password, generatePassword } =
     useContext(PwGenContext);
 
   useEffect(() => {
-    getNewPassword();
+    generatePassword();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [charsets, length]);
 

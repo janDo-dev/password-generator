@@ -6,7 +6,7 @@ import PwGenLengthSlider from "./PwGenLengthSlider";
 import Button from "./Button";
 
 const PasswordGenerator: React.FC = () => {
-  const { getNewPassword } = useContext(PwGenContext);
+  const { generatePassword } = useContext(PwGenContext);
 
   return (
     <div className="container">
@@ -18,7 +18,7 @@ const PasswordGenerator: React.FC = () => {
 
       <h2>Password Length:</h2>
       <PwGenLengthSlider />
-      <Button text={"Generate new password"} onClick={getNewPassword} />
+      <Button text={"Generate new password"} onClick={generatePassword} />
     </div>
   );
 };

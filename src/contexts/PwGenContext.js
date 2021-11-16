@@ -52,7 +52,7 @@ export const PwGenProvider = ({ children }) => {
     setLength({ ...length, length: newLength });
   };
 
-  const getNewPassword = () => {
+  const generatePassword = () => {
     let chars = [""];
     let newPassword = "";
 
@@ -88,7 +88,7 @@ export const PwGenProvider = ({ children }) => {
         password,
         updateCharset,
         updateLength,
-        getNewPassword,
+        generatePassword,
       }}
     >
       {children}
