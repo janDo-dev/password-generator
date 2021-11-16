@@ -1,17 +1,19 @@
 import { useContext } from "react";
+import { PwGenContext } from "../contexts/PwGenContext";
 import PwGenCharsetSelector from "./PwGenCharsetSelector";
-import { PwGenContext } from "../PwGenContext";
 
 const PwGenCharsetSelectors: React.FC = () => {
-  const { charsets, charsetStates } = useContext(PwGenContext);
+  const { charsets } = useContext(PwGenContext);
+  const charsetKeys = Object.keys(charsets);
 
   return (
     <>
-      {charsets.map((charset: string) => (
+      {charsetKeys.map((charset: string) => (
         <PwGenCharsetSelector
-          selectorName={`charset-${charset}`}
+          key={charset}
+          selectorName={charset}
           id={`charset-${charset}-toggle`}
-          checked={charsetStates[charset]}
+          checked={charsets[charset].isActive}
         />
       ))}
     </>

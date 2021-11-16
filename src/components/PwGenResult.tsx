@@ -1,10 +1,16 @@
-const charactersLowerCase = Array.from("abcdefghijklmnopqrstuvwxyz");
-const charactersUpperCase = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-const numbers = Array.from("0123456789");
-const specialChars = Array.from("^°!§$%&/()=?+*~@€<>|µ,;.:-_#");
+import { useContext, useEffect } from "react";
+import { PwGenContext } from "../contexts/PwGenContext";
 
 const PwGenResult: React.FC = () => {
-  return <div className="pw-gen__result"></div>;
+  const { charsets, length, password, getNewPassword } =
+    useContext(PwGenContext);
+
+  useEffect(() => {
+    getNewPassword();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [charsets, length]);
+
+  return <div className="pw-gen__result">{password}</div>;
 };
 
 export default PwGenResult;

@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { PwGenContext } from "../contexts/PwGenContext";
+
 interface CharsetSelectorProps {
   selectorName: string;
   id: string;
@@ -6,9 +9,23 @@ interface CharsetSelectorProps {
 
 const PwGenCharsetSelector: React.FC<CharsetSelectorProps> = ({
   selectorName,
+  id,
   checked,
 }) => {
-  return <input type="checkbox" name={selectorName} id="" checked={checked} />;
+  const { updateCharset } = useContext(PwGenContext);
+
+  return (
+    <>
+      <label htmlFor={selectorName}>{selectorName.toUpperCase()}</label>
+      <input
+        type="checkbox"
+        name={selectorName}
+        id={id}
+        onChange={(e) => updateCharset(e.target.name)}
+        checked={checked}
+      />
+    </>
+  );
 };
 
 export default PwGenCharsetSelector;
