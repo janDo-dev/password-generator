@@ -1,14 +1,11 @@
-import { useContext } from "react";
-import { PwGenContext } from "../contexts/PwGenContext";
-
 interface ButtonProps {
   text: string;
+  onClick: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ text }) => {
-  const { getNewPassword } = useContext(PwGenContext);
-
-  return <button onClick={getNewPassword}>{text}</button>;
+const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
+  const handleClick = () => onClick();
+  return <button onClick={handleClick}>{text}</button>;
 };
 
 export default Button;
