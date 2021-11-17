@@ -1,10 +1,10 @@
 interface ButtonProps {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
-  const handleClick = () => onClick();
+  const handleClick = () => onClick && onClick();
   return <button onClick={handleClick}>{text}</button>;
 };
 

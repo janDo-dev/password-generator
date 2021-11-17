@@ -4,7 +4,7 @@ import PwGenCharsetSelector from "./PwGenCharsetSelector";
 
 const PwGenCharsetSelectors: React.FC = () => {
   const { charsets } = useContext(PwGenContext);
-  const charsetKeys = Object.keys(charsets);
+  const charsetKeys = Object.keys(charsets || {});
 
   return (
     <>
@@ -13,7 +13,7 @@ const PwGenCharsetSelectors: React.FC = () => {
           key={charset}
           selectorName={charset}
           id={`charset-${charset}-toggle`}
-          checked={charsets[charset].isActive}
+          checked={(charsets && charsets[charset].isActive) || false}
         />
       ))}
     </>

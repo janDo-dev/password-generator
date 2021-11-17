@@ -6,7 +6,7 @@ const PwGenResult: React.FC = () => {
     useContext(PwGenContext);
 
   useEffect(() => {
-    generatePassword();
+    generatePassword && generatePassword();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [charsets, length]);
 

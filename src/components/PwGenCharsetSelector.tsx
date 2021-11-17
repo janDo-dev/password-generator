@@ -21,7 +21,7 @@ const PwGenCharsetSelector: React.FC<CharsetSelectorProps> = ({
         type="checkbox"
         name={selectorName}
         id={id}
-        onChange={(e) => updateCharset(e.target.name)}
+        onChange={(e) => updateCharset && updateCharset(e.target.name)}
         checked={checked}
       />
     </>

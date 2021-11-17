@@ -1,8 +1,31 @@
-import { createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
-export const PwGenContext = createContext();
+interface CharsetContextState {
+  [key: string]: {
+    [key: string]: string | string[] | boolean;
 
-const initialCharsets = {
+    name: string;
+    values: string[];
+    isActive: boolean;
+  };
+}
+
+interface PwGenProviderProps {
+  charsets?: CharsetContextState;
+  length?: LengthContextState;
+  password?: String;
+  updateCharset?: (charset: string) => void;
+  updateLength?: (newLenght: number) => void;
+  generatePassword?: () => void;
+}
+
+interface LengthContextState {
+  length: number;
+  lengthMin: number;
+  lengthMax: number;
+}
+
+const initialCharsets: CharsetContextState = {
   lowercase: {
     name: "Lowercase",
     values: Array.from("abcdefghijklmnopqrstuvwxyz"),
@@ -25,20 +48,23 @@ const initialCharsets = {
   },
 };
 
-const initialLength = {
+const initialLength: LengthContextState = {
   length: 8,
   lengthMin: 8,
   lengthMax: 35,
 };
 
-export const PwGenProvider = ({ children }) => {
-  const [charsets, setCharsets] = useState(initialCharsets);
-  const [length, setLength] = useState(initialLength);
-  const [password, setPassword] = useState("");
+export const PwGenContext = createContext<PwGenProviderProps>({});
+
+export const PwGenProvider = ({ children }: { children: ReactNode }) => {
+  const [charsets, setCharsets] =
+    useState<CharsetContextState>(initialCharsets);
+  const [length, setLength] = useState<LengthContextState>(initialLength);
+  const [password, setPassword] = useState<String>("");
 
   const { lowercase, uppercase, numbers, specialChars } = charsets;
 
-  const updateCharset = (charset) => {
+  const updateCharset = (charset: string) => {
     setCharsets({
       ...charsets,
       [charset]: {
@@ -48,7 +74,7 @@ export const PwGenProvider = ({ children }) => {
     });
   };
 
-  const updateLength = (newLength) => {
+  const updateLength = (newLength: number) => {
     setLength({ ...length, length: newLength });
   };
 
@@ -83,12 +109,12 @@ export const PwGenProvider = ({ children }) => {
   return (
     <PwGenContext.Provider
       value={{
-        charsets,
-        length,
-        password,
-        updateCharset,
-        updateLength,
-        generatePassword,
+        charsets: charsets,
+        length: length,
+        password: password,
+        updateCharset: updateCharset,
+        updateLength: updateLength,
+        generatePassword: generatePassword,
       }}
     >
       {children}

@@ -6,17 +6,15 @@ const PwGenLengthSlider: React.FC = () => {
 
   return (
     <>
-      <label htmlFor="pw-length">{length.length}</label>
+      <label htmlFor="pw-length">{length && length.length}</label>
       <input
         type="range"
         name="pw-length"
         id="pw-length-slider"
-        value={length.length}
-        min={length.lengthMin}
-        max={length.lengthMax}
-        onChange={(e) => {
-          updateLength(e.target.value);
-        }}
+        value={length && length.length}
+        min={length && length.lengthMin}
+        max={length && length.lengthMax}
+        onChange={(e) => updateLength && updateLength(Number(e.target.value))}
       />
     </>
   );
