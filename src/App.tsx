@@ -1,11 +1,13 @@
 import "./App.css";
-import PasswordGenerator from "./components/PasswordGenerator";
+import StyledPasswordGenerator from "./components/PasswordGenerator";
 import { PwGenProvider } from "./contexts/PwGenContext";
+import GlobalStyle from "./globalStyles";
 
 function App() {
   return (
     <PwGenProvider>
-      <PasswordGenerator />
+      <GlobalStyle />
+      <StyledPasswordGenerator />
     </PwGenProvider>
   );
 }
