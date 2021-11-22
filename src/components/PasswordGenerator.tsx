@@ -4,12 +4,17 @@ import PwGenResult from "./PwGenResult";
 import PwGenCharsetSelectors from "./PwGenCharsetSelectors";
 import PwGenLengthSlider from "./PwGenLengthSlider";
 import Button from "./Button";
+import styled from "styled-components";
 
-const PasswordGenerator: React.FC = () => {
+interface StyledComponentProps {
+  className?: string;
+}
+
+const PasswordGenerator: React.FC<StyledComponentProps> = ({ className }) => {
   const { generatePassword } = useContext(PwGenContext);
 
   return (
-    <div className="container">
+    <div className={`container ${className}`}>
       <h1 className="pwgen__main-headline">Password Generator</h1>
       <PwGenResult />
 
@@ -23,4 +28,11 @@ const PasswordGenerator: React.FC = () => {
   );
 };
 
-export default PasswordGenerator;
+const StyledPasswordGenerator = styled(PasswordGenerator)`
+  h1 {
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+`;
+
+export default StyledPasswordGenerator;
