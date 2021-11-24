@@ -1,11 +1,24 @@
-interface ButtonProps {
-  text: string;
-  onClick?: () => void;
-}
+import { StyledButtonProps } from "../interfaces";
+import styled from "styled-components";
 
-const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
+const Button: React.FC<StyledButtonProps> = ({ text, onClick, className }) => {
   const handleClick = () => onClick && onClick();
-  return <button onClick={handleClick}>{text}</button>;
+
+  return (
+    <button className={className} onClick={handleClick}>
+      {text}
+    </button>
+  );
 };
 
-export default Button;
+const StyledButton = styled(Button)`
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 0.3rem;
+  border: none;
+  padding: 1rem;
+`;
+
+export default StyledButton;
