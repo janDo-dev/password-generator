@@ -14,16 +14,19 @@ const GlobalStyle = createGlobalStyle`
     color: #fff;
     text-align: center;
     margin: 0;
+    padding: .5rem;
     font-family: "Arvo", "Arial", "Verdana", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   #root {
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    min-height: 100vh;
+    @media (min-width: 769px) {
+      display: flex;
+      justify-content: center; 
+      align-items: center;
+      min-height: 100vh;
+    }
   }
 `;
 
