@@ -20,7 +20,10 @@ const PwGenCharsetSelector: React.FC<CharsetSelectorProps> = ({
 
   return (
     <div className={`pwgen-options__charset-selector ${className}`}>
-      <label className={"charset-selector__label"} htmlFor={selectorName}>
+      <label
+        className={`charset-selector__label ${checked ? "active" : ""}`}
+        htmlFor={selectorName}
+      >
         {selectorName === "specialChars"
           ? "Special Characters"
           : capitalizeWord(selectorName)}
@@ -55,6 +58,10 @@ const StyledPwGenCharsetSelector = styled(PwGenCharsetSelector)`
     border: 2px solid var(--accent);
     padding: 0.5rem;
     margin: 0.5rem;
+
+    &.active {
+      background-color: var(--accent);
+    }
   }
 `;
 
