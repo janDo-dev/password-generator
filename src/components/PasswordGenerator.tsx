@@ -1,37 +1,53 @@
 import { useContext } from "react";
 import { PwGenContext } from "../contexts/PwGenContext";
-import PwGenResult from "./PwGenResult";
-import PwGenCharsetSelectors from "./PwGenCharsetSelectors";
-import PwGenLengthSlider from "./PwGenLengthSlider";
+import { StyledComponentProps } from "../interfaces";
+import StyledPwGenResult from "./PwGenResult";
+import StyledPwGenCharsetSelectors from "./PwGenCharsetSelectors";
+import StyledPwGenLengthSlider from "./PwGenLengthSlider";
 import Button from "./Button";
 import styled from "styled-components";
-
-interface StyledComponentProps {
-  className?: string;
-}
 
 const PasswordGenerator: React.FC<StyledComponentProps> = ({ className }) => {
   const { generatePassword } = useContext(PwGenContext);
 
   return (
     <div className={`container ${className}`}>
-      <h1 className="pwgen__main-headline">Password Generator</h1>
-      <PwGenResult />
+      <h1 className="pwgen__main-headline">
+        Password
+        <br /> Generator
+      </h1>
+      <section className="pwgen-result">
+        <StyledPwGenResult />
+      </section>
 
-      <h2>Choose your character set:</h2>
-      <PwGenCharsetSelectors />
-
-      <h2>Password Length:</h2>
-      <PwGenLengthSlider />
-      <Button text={"Generate new password"} onClick={generatePassword} />
+      <section className="pwgen-options">
+        <StyledPwGenCharsetSelectors />
+        <StyledPwGenLengthSlider />
+        <Button text={"Generate new password"} onClick={generatePassword} />
+      </section>
     </div>
   );
 };
 
 const StyledPasswordGenerator = styled(PasswordGenerator)`
-  h1 {
+  .pwgen__main-headline {
+    font-size: 1.3rem;
     color: var(--accent);
     text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1.5rem;
+
+    br {
+      @media (min-width: 769px) {
+        display: none;
+      }
+    }
+  }
+
+  .pwgen-options__headline {
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
   }
 `;
 
