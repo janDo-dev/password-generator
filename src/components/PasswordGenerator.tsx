@@ -4,7 +4,7 @@ import { StyledComponentProps } from "../interfaces";
 import StyledPwGenResult from "./PwGenResult";
 import StyledPwGenCharsetSelectors from "./PwGenCharsetSelectors";
 import StyledPwGenLengthSlider from "./PwGenLengthSlider";
-import Button from "./Button";
+import StyledButton from "./Button";
 import styled from "styled-components";
 
 const PasswordGenerator: React.FC<StyledComponentProps> = ({ className }) => {
@@ -23,7 +23,10 @@ const PasswordGenerator: React.FC<StyledComponentProps> = ({ className }) => {
       <section className="pwgen-options">
         <StyledPwGenCharsetSelectors />
         <StyledPwGenLengthSlider />
-        <Button text={"Generate new password"} onClick={generatePassword} />
+        <StyledButton
+          text={"Generate new password"}
+          onClick={generatePassword}
+        />
       </section>
     </div>
   );
