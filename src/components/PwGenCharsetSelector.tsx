@@ -49,6 +49,7 @@ const StyledPwGenCharsetSelector = styled(PwGenCharsetSelector)`
     height: 100%;
     margin: 0;
     opacity: 0;
+    cursor: pointer;
   }
 
   .charset-selector__label {
