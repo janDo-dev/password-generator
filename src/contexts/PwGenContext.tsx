@@ -111,10 +111,8 @@ export const PwGenProvider = ({ children }: { children: ReactNode }) => {
     pattern = new RegExp(`^${pattern}.+$`);
 
     if (pattern.test(newPassword)) {
-      console.log(true, pattern);
       setPassword(newPassword);
     } else {
-      console.log("new", newPassword, pattern);
       generatePassword();
     }
   };
