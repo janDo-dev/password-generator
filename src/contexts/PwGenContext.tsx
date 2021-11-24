@@ -81,21 +81,26 @@ export const PwGenProvider = ({ children }: { children: ReactNode }) => {
   const generatePassword = () => {
     let chars = [""];
     let newPassword = "";
+    let pattern: string | RegExp = "";
 
     if (lowercase.isActive) {
       chars = chars.concat(lowercase.values);
+      pattern += "(?=.*[a-z])";
     }
 
     if (uppercase.isActive) {
       chars = chars.concat(uppercase.values);
+      pattern += "(?=.*[A-Z])";
     }
 
     if (numbers.isActive) {
       chars = chars.concat(numbers.values);
+      pattern += "(?=.*\\d)";
     }
 
     if (specialChars.isActive) {
       chars = chars.concat(specialChars.values);
+      pattern += "(?=.*[!§,;.:-_#+*~§$%&?<>°^])";
     }
 
     for (let i = 0; i < length.length; i++) {
@@ -103,7 +108,15 @@ export const PwGenProvider = ({ children }: { children: ReactNode }) => {
       newPassword += chars[rNum];
     }
 
-    setPassword(newPassword);
+    pattern = new RegExp(`^${pattern}.+$`);
+
+    if (pattern.test(newPassword)) {
+      console.log(true, pattern);
+      setPassword(newPassword);
+    } else {
+      console.log("new", newPassword, pattern);
+      generatePassword();
+    }
   };
 
   return (
